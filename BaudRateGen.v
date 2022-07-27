@@ -1,99 +1,119 @@
 // Code your design here
 `timescale 100ps / 100ps
 
-module iiitb_brg( clk,reset,clk1152,clk384,clk192,clk96);
+module iiitb_brg( clk,reset,sel,clkout);
 	 
 input clk,reset;
-output reg clk1152,clk384,clk192,clk96;
+input [1:0]sel;
+output reg clkout;
+output reg flag=0;
 
 parameter DIV1=34;//fsystem/f1152*2,fsystem=125Mhz
 
-reg[5:0] cnt1;
-reg[1:0] cnt2;
-reg[2:0] cnt3;
-reg[3:0] cnt4;
-
-//clk for 115200bps
-always@(posedge clk)
-	begin
-	if(reset)
+reg[5:0] cnt1=0;
+reg[1:0] cnt2=0;
+reg[2:0] cnt3=0;
+reg[3:0] cnt4=0;
+always@(posedge clk or sel)
+begin
+if(cnt1==DIV1-1)
+	cnt1<=0;
+else
+	cnt1<=cnt1+1;
+end
+always@(posedge clk or sel)
+	case(sel)
+		//clk for 115200bps
+	2'b00:
 		begin
-		cnt1<=0;
-		clk1152<=0;
-		end
-	else
-		if(cnt1==(DIV1-1))
+		if(reset)
 			begin
-			cnt1 <= 0;
-			clk1152<=~clk1152;
-		end
+			cnt1<=0;
+			clkout<=0;
+			end
 		else
-			cnt1<=cnt1+1;
-	end
-
-//clk for 38400bps
-always @(posedge clk)
-	begin
-	if(reset)
 		begin
-		cnt2<=0;
-		clk384<=0;
+			if(cnt1==(DIV1-1))
+				begin
+				cnt1 <= 0;
+				clkout<=~clkout;
+				end
 		end
-	else
-	if(cnt1==(DIV1-1))
+		end
+
+		//clk for 38400bps
+	2'b01:
 		begin
-		if(cnt2==2)
+		if(reset)
 			begin
 			cnt2<=0;
-			clk384<=~clk384;
-			end
-	else
-		cnt2<=cnt2+1;
-	end
-end
-
-
-//clk for 19200bps
-always @(posedge clk)
-	begin
-	if(reset)
-		begin
-		cnt3<=0;
-		clk192<=0;
-		end
-	else
-		if(cnt1==(DIV1-1))
-		begin
-		if(cnt3==5)
-			begin
-			cnt3<=0;
-			clk192<=~clk192;
+			clkout<=0;
 			end
 		else
-			cnt3<=cnt3+1;
+			begin
+			if(cnt1==(DIV1-1))
+				begin
+					if(cnt2==2)
+						begin
+						cnt2<=0;
+						clkout<=~clkout;
+						end
+					else
+					begin
+						cnt2<=cnt2+1;
+					end
+				end
 		end
-	end
+		
+		end
 
-//clk for 9600bps
-always @(posedge clk)
-	begin
-	if(reset)
+
+		//clk for 19200bps
+	2'b10:
 		begin
-		cnt4<=0;
-		clk96<=0;
-		end
-	else
+		if(reset)
+			begin
+			cnt3<=0;
+			clkout<=0;
+			end
+		else
+		begin
 		if(cnt1==(DIV1-1))
+			begin
+			if(cnt3==5)
+				begin
+				cnt3<=0;
+				clkout<=~clkout;
+				end
+			else
+				cnt3<=cnt3+1;
+			end
+		end
+		
+		end
+
+		//clk for 9600bps
+	2'b11:
 		begin
-			if(cnt4==11)
+		if(reset)
 			begin
 			cnt4<=0;
-			clk96<=~clk96;
+			clkout<=0;
 			end
-			else
-			cnt4<=cnt4+1;
+		else
+		begin
+		if(cnt1==(DIV1-1))
+			begin
+				if(cnt4==11)
+				begin
+				cnt4<=0;
+				clkout<=~clkout;
+				end
+				else
+				cnt4<=cnt4+1;
+			end
 		end
-	end
+		end
+	endcase
 endmodule
-
 
