@@ -6,7 +6,6 @@ module iiitb_brg( clk,reset,sel,clkout);
 input clk,reset;
 input [1:0]sel;
 output reg clkout;
-output reg flag=0;
 
 parameter DIV1=34;//fsystem/f1152*2,fsystem=125Mhz
 
@@ -14,14 +13,14 @@ reg[5:0] cnt1=0;
 reg[1:0] cnt2=0;
 reg[2:0] cnt3=0;
 reg[3:0] cnt4=0;
-always@(posedge clk or sel)
+always@(*)
 begin
 if(cnt1==DIV1-1)
 	cnt1<=0;
 else
 	cnt1<=cnt1+1;
 end
-always@(posedge clk or sel)
+always@(*)
 	case(sel)
 		//clk for 115200bps
 	2'b00:
