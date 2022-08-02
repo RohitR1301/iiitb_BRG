@@ -8,6 +8,9 @@ The Baud rate generator is nothing but a frequency divider. It helps two devices
 <p align="center">
   Fig. Baud Rate Generator Block Diagram
 </p>
+### Working 
+The block diagram of the baud rate generator is given in the fig 1. The input to the system is Clock, Baud rate select, reset. The output is the clock with the frequency corresponding to the baud rate. The Verilog code for this system works is based on the following logic. The system works on positive edge triggered clock and has a divisor parameter. The select line is used to decide which baud rate to be selected. There is counter variable which count to a certain calculated value depending on the selected Baud rate. The clock goes from high to low or low to high each time the counter reaches the calculated value thus leading to different frequency of clock. The output clock is set to system clock, in case the reset button is pressed.
+### About Iverilog and GTKWave
 
 
 ### Author
