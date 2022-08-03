@@ -12,10 +12,23 @@ The Baud rate generator is nothing but a frequency divider. It helps two devices
 ### Working 
 The block diagram of the baud rate generator is given in the fig 1. The input to the system is Clock, Baud rate select line and reset. The output is the clock with the frequency corresponding to the baud rate. 
 The system works on positive edge triggered clock and uses select line to decide the clock frequency for the corresponding selected Baud Rate to be give as output. A counter value is calculated based on the system clock and 115200bps baud rate which is DIV1. For 115200 bps, when the counter reaches DIV1 the clock pulse is negated. For 38400bps, the clock pulse is negated when the counter reaches DIV1 twice. For 19200bps, the clock pusle is negated when the counter reaches DIV1 5 times. For 9600bps, the clock pulse is negated when the counter reaches DIV1 11 times. 
+### Functional Characteristics 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/110080106/182586115-bab95563-73cf-4203-94e1-53e1104832bc.jpeg" width="1000"/><br>
+  Fig 2. Simulation result for different Baud Rate
+</p>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/110080106/182586640-c925798d-e41b-4271-b4c9-bf2551328e04.jpeg" width="1000"/><br>
+  Fig 3. Simulation result when reset becomes 1
+</p>
+
 ### About Iverilog and GTKWave
 **Icarus Verilog** is a Verilog simulation and synthesis tool. It operates as a compiler, compiling source code written in Verilog (IEEE-1364) into some target format.<br>
 **GTKWave** is a VCD waveform viewer based on the GTK library. This viewer support VCD and LXT formats for signal dumps. 
+### Yosys
+**Yosys** is a framework for RTL synthesis tools. It currently has extensive Verilog-2005 support and provides a basic set of synthesis algorithms for various application domains.
 
+Yosys can be adapted to perform any synthesis job by combining the existing passes (algorithms) using synthesis scripts and adding additional passes as needed by extending the yosys C++ code base.
 ### Author
 - Rohit Raj
 
