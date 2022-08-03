@@ -13,14 +13,7 @@ reg[5:0] cnt1=0;
 reg[1:0] cnt2=0;
 reg[2:0] cnt3=0;
 reg[3:0] cnt4=0;
-always@(*)
-begin
-if(cnt1==DIV1-1)
-	cnt1<=0;
-else
-	cnt1<=cnt1+1;
-end
-always@(*)
+always@(posedge clk)
 	case(sel)
 		//clk for 115200bps
 	2'b00:
@@ -37,6 +30,8 @@ always@(*)
 				cnt1 <= 0;
 				clkout<=~clkout;
 				end
+			else
+				cnt1<=cnt1+1;
 		end
 		end
 
@@ -52,16 +47,17 @@ always@(*)
 			begin
 			if(cnt1==(DIV1-1))
 				begin
+					cnt1<=0;
 					if(cnt2==2)
 						begin
 						cnt2<=0;
 						clkout<=~clkout;
 						end
 					else
-					begin
 						cnt2<=cnt2+1;
-					end
 				end
+			else
+				cnt1<=cnt1+1;
 		end
 		
 		end
@@ -79,6 +75,8 @@ always@(*)
 		begin
 		if(cnt1==(DIV1-1))
 			begin
+			cnt1<=0;
+			
 			if(cnt3==5)
 				begin
 				cnt3<=0;
@@ -87,6 +85,8 @@ always@(*)
 			else
 				cnt3<=cnt3+1;
 			end
+		else 
+			cnt1<=cnt1+1;
 		end
 		
 		end
@@ -100,18 +100,21 @@ always@(*)
 			clkout<=0;
 			end
 		else
-		begin
-		if(cnt1==(DIV1-1))
 			begin
-				if(cnt4==11)
+			if(cnt1==(DIV1-1))
 				begin
-				cnt4<=0;
-				clkout<=~clkout;
+					cnt1<=0;
+					if(cnt4==11)
+					begin
+					cnt4<=0;
+					clkout<=~clkout;
+					end
+					else
+					cnt4<=cnt4+1;
 				end
-				else
-				cnt4<=cnt4+1;
+			else
+				cnt1<=cnt1+1;
 			end
-		end
 		end
 	endcase
 endmodule

@@ -27,6 +27,8 @@ module iiitb_brg_tb;
 	sel=2'b00;
 	#15 reset=1;
 	#80 reset = 0;
+	#50000 reset =1;
+	#15000 reset =0;
 	
 	end
       always
