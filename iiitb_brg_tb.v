@@ -39,7 +39,7 @@ module iiitb_brg_tb;
 		#200000 sel=sel+2'b01;
 		initial
 		begin
-		$dumpfile("dump.vcd");
+			$dumpfile("iiitb_brg_out.vcd");
           $dumpvars(1, iiitb_brg_tb);
 	 end
 		
