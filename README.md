@@ -13,7 +13,27 @@ The Baud rate generator is nothing but a frequency divider. It helps two devices
 The block diagram of the baud rate generator is given in the fig 1. The input to the system is Clock, Baud rate select line and reset. The output is the clock with the frequency corresponding to the baud rate. 
 The system works on positive edge triggered clock and uses select line to decide the clock frequency for the corresponding selected Baud Rate to be give as output. A counter value is calculated based on the system clock and 115200bps baud rate which is DIV1. For 115200 bps, when the counter reaches DIV1 the clock pulse is negated. For 38400bps, the clock pulse is negated when the counter reaches DIV1 twice. For 19200bps, the clock pusle is negated when the counter reaches DIV1 5 times. For 9600bps, the clock pulse is negated when the counter reaches DIV1 11 times.<br>
 The clock output is set to 0 when the reset is set to high.
-### Functional Characteristics 
+### Functional Simulation 
+### About Iverilog and GTKWave
+**Icarus Verilog** is a Verilog simulation and synthesis tool. It operates as a compiler, compiling source code written in Verilog (IEEE-1364) into some target format.<br>
+**GTKWave** is a VCD waveform viewer based on the GTK library. This viewer support VCD and LXT formats for signal dumps. 
+### Yosys
+**Yosys** is a framework for RTL synthesis tools. It currently has extensive Verilog-2005 support and provides a basic set of synthesis algorithms for various application domains.
+
+### Installing Software 
+```
+sudo apt-get install git 
+sudo apt-get install iverilog 
+sudo apt-get install gtkwave 
+```
+### Executing the project
+```
+git clone https://github.com/RohitR1301/iiitb_BRG
+cd iiitb_gc
+iverilog iiitb_gc.v iiitb_gc_tb.v -o iiitb_gc
+./iiitb_gc
+gtkwave iiitb_gc.vcd
+```
 <p align="center">
   <img src="https://user-images.githubusercontent.com/110080106/182586115-bab95563-73cf-4203-94e1-53e1104832bc.jpeg" width="1000"/><br>
   Fig 2. Simulation result for different Baud Rate
@@ -23,26 +43,12 @@ The clock output is set to 0 when the reset is set to high.
   Fig 3. Simulation result when reset becomes 1
 </p>
 
-### About Iverilog and GTKWave
-**Icarus Verilog** is a Verilog simulation and synthesis tool. It operates as a compiler, compiling source code written in Verilog (IEEE-1364) into some target format.<br>
-**GTKWave** is a VCD waveform viewer based on the GTK library. This viewer support VCD and LXT formats for signal dumps. 
-### Yosys
-**Yosys** is a framework for RTL synthesis tools. It currently has extensive Verilog-2005 support and provides a basic set of synthesis algorithms for various application domains.
+
 
 Yosys can be adapted to perform any synthesis job by combining the existing passes (algorithms) using synthesis scripts and adding additional passes as needed by extending the yosys C++ code base.
 ### Author
 - Rohit Raj
-
-### Contributor
-- Lokesh Maji
-- Kunal Ghosh 
-- Arsh Kedia
-- Siddhant Nayak
 ### Acknowledgement 
 Kunal Ghosh, Director, VSD Corp. Pvt. Ltd.
 ### Contact Information
 - Rohit Raj, M.Tech VLSI, Batch 2022-2024, International Institute Of Information Technology, Bangalore(IIIT B), rohitraj116@gmail.com
-- Lokesh Maji, M.Tech VLSI, Batch 2022-2024, International Institute Of Information Technology, Bangalore (IIIT B), Lokesh.Maji@iiitb.ac.in
-- Arsh Kedia, M.Tech VLSI, Batch 2022-2024, International Institute Of Information Technology, Bangalore (IIIT B), 
-- Siddhant Nayak, M.Tech VLSI, Batch 2022-2024, International Institute Of Information Technology, Bangalore (IIIT B), siddhantn72@iiitb.ac.in
-- Kunal Ghosh, Director, VSD Corp. Pvt. Ltd., kunalghosh@gmail.com
