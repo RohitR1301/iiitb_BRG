@@ -21,6 +21,9 @@ always@(posedge clk)
 		if(reset)
 			begin
 			cnt1<=0;
+			cnt2<=0;
+			cnt3<=0;
+			cnt4<=0;
 			clkout<=0;
 			end
 		else
@@ -116,6 +119,7 @@ always@(posedge clk)
 				cnt1<=cnt1+1;
 			end
 		end
+	
 	endcase
 endmodule
 

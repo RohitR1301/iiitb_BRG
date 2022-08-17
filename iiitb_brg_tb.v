@@ -12,12 +12,7 @@ module iiitb_brg_tb;
 	wire clkout;
 
 	// Instantiate the Unit Under Test (UUT)
-	iiitb_brg uut (
-		.clk(clk), 
-		.reset(reset), 
-		.sel(sel),
-		.clkout(clkout)
-	);
+	iiitb_brg uut (.clk(clk), .reset(reset), .sel(sel),.clkout(clkout));
 
 	initial begin
 	
@@ -29,6 +24,7 @@ module iiitb_brg_tb;
 	#80 reset = 0;
 	#50000 reset =1;
 	#15000 reset =0;
+	#2000000 $finish;
 	
 	end
       always
@@ -40,7 +36,7 @@ module iiitb_brg_tb;
 		initial
 		begin
 			$dumpfile("iiitb_brg_out.vcd");
-          $dumpvars(1, iiitb_brg_tb);
+          $dumpvars(0, iiitb_brg_tb);
 	 end
 		
 endmodule
