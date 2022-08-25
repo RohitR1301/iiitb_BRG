@@ -87,6 +87,12 @@ After running the above command we get the following output
   Fig 5. GLS Waveform
 </p>
 
+### 5) Layout
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/110080106/186617360-f769bf3d-bade-4368-bffa-cd93930f34ff.png"width="1000"/><br>
+  Fig 6. Layout
+</p>
+
 ### Author
 - Rohit Raj
 ### Acknowledgement 
