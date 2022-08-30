@@ -140,6 +140,36 @@ sudo make install
  Physical design means --->> netlist (.v ) converted into GDSII form(layout form)
 logical connectivity of cells converted into physical connectivity.
 During physical design, all design components are instantiated with their geometric representations. In other words, all macros, cells, gates, transistors, etc., with fixed shapes and sizes per fabrication layer, are assigned spatial locations (placement) and have appropriate routing connections (routing) completed in metal layers.
+### -Making Config file for running OpenLane
+We make a file named as config.jason, which is used to configure OpenLane for our project
+```
+{
+    "DESIGN_NAME": "iiitb_brg",
+    "VERILOG_FILES": "dir::src/iiitb_brg.v",
+    "CLOCK_PORT": "clk",
+    "CLOCK_NET": "clk",
+    "GLB_RESIZER_TIMING_OPTIMIZATIONS": true,
+    "CLOCK_PERIOD": 65,
+    "PL_RANDOM_GLB_PLACEMENT": 1,
+    "PL_TARGET_DENSITY": 0.5,
+    "FP_SIZING" : "relative",
+
+"LIB_SYNTH": "dir::src/sky130_fd_sc_hd__typical.lib",
+"LIB_FASTEST": "dir::src/sky130_fd_sc_hd__fast.lib",
+"LIB_SLOWEST": "dir::src/sky130_fd_sc_hd__slow.lib",
+"LIB_TYPICAL": "dir::src/sky130_fd_sc_hd__typical.lib",
+"TEST_EXTERNAL_GLOB": "dir::../iiitb_brg/src/*",
+"SYNTH_DRIVING_CELL":"sky130_vsdinv",
+
+    "pdk::sky130*": {
+        "FP_CORE_UTIL": 55,
+        "scl::sky130_fd_sc_hd": {
+            "FP_CORE_UTIL": 55
+        }
+    } 
+}
+```
+We make a folder inside openlane->design with the name iiitb_brg. Inside this folder we put the above config.jason file and also make one more folder names as SRC which contains the source file.
 <p align="center">
   <img src="https://user-images.githubusercontent.com/110080106/187413490-05ae8b94-ad97-4898-81a1-901231036450.png"width="1000"/><br>
   Fig 6. Layout
