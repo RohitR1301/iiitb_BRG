@@ -89,7 +89,7 @@ After running the above command we get the following output
 
 ### 5) Layout
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/110080106/186617360-f769bf3d-bade-4368-bffa-cd93930f34ff.png"width="1000"/><br>
+  <img src="https://user-images.githubusercontent.com/110080106/187413490-05ae8b94-ad97-4898-81a1-901231036450.png"width="1000"/><br>
   Fig 6. Layout
 </p>
 
