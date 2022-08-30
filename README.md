@@ -266,6 +266,7 @@ Now we need to edit the cofig.jason file as below
         }
     }
 }
+
 ```
 Now we run the OpenLane flow command after invoking openlane. Go to OpenLane folder and run the following command
 ```
@@ -288,6 +289,7 @@ We get the sky130_vsdinv included
   <img src="screenshot1 vsdinv](https://user-images.githubusercontent.com/110080106/187512687-a2cdd6cc-49a9-4c00-b4de-7093b4be03dd.png"width="1000"/><br>
   Fig 12. setting port VGND
 </p>
+```
 
 
 ### Author
