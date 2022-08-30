@@ -93,6 +93,13 @@ After running the above command we get the following output
   Fig 6. Layout
 </p>
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/110080106/187411328-1a056207-6ef7-4333-a7f1-2a6a5100c4f1.png"width="1000"/><br>
+  Fig 7. Inverter added to layout
+</p>
+
+
+
 ### Author
 - Rohit Raj
 ### Acknowledgement 
