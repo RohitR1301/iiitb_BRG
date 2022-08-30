@@ -88,9 +88,11 @@ After running the above command we get the following output
 </p>
 
 ### 5) Physical Design
-### About OpenLane
-OpenLane is an automated RTL to GDSII flow based on several components including OpenROAD, Yosys, Magic, Netgen, CVC, SPEF-Extractor, CU-GR, Klayout and a number of custom scripts for design exploration and optimization. The flow performs full ASIC implementation steps from RTL all the way down to GDSII.
-### Software setup
+### -About OpenLane
+OpenLANE is an opensource tool or flow used for opensource tape-outs. The OpenLANE flow comprises a variety of tools such as Yosys, ABC, OpenSTA, Fault, OpenROAD app, Netgen and Magic which are used to harden chips and macros, i.e. generate final GDSII from the design RTL. The primary goal of OpenLANE is to produce clean GDSII with no human intervention. OpenLANE has been tuned to function for the Google-Skywater130 Opensource Process Design Kit.
+### -About Magic
+Magic is a venerable VLSI layout tool, written in the 1980's at Berkeley by John Ousterhout, now famous primarily for writing the scripting interpreter language Tcl. Due largely in part to its liberal Berkeley open-source license, magic has remained popular with universities and small companies. The open-source license has allowed VLSI engineers with a bent toward programming to implement clever ideas and help magic stay abreast of fabrication technology. However, it is the well thought-out core algorithms which lend to magic the greatest part of its popularity. Magic is widely cited as being the easiest tool to use for circuit layout, even for people who ultimately rely on commercial tools for their product design flow. 
+### -Software setup (OpenLane)
 ## On Ubuntu
 `apt install -y build-essential python3 python3-venv python3-pip`
 # Setting Up OpenLane
@@ -110,7 +112,34 @@ The easiest way to mount the proper directories into the docker container would 
 ```
     sudo make mount
 ```
-
+### -Software setup (Magic)
+# system requirements
+Run the below commands to check the system requirements
+```
+sudo apt-get install m4
+sudo apt-get install tcsh
+sudo apt-get install csh
+sudo apt-get install libx11-dev
+sudo apt-get install tcl-dev tk-dev
+sudo apt-get install libcairo2-dev
+sudo apt-get install mesa-common-dev libglu1-mesa-dev
+sudo apt-get install libncurses-dev
+```
+Now, We can use the following command to download magic
+```
+git clone https://github.com/RTimothyEdwards/magic
+```
+The we use the below commands to install magic
+```
+cd magic/
+./configure
+sudo make
+sudo make install
+```
+### -About Physical Design
+ Physical design means --->> netlist (.v ) converted into GDSII form(layout form)
+logical connectivity of cells converted into physical connectivity.
+During physical design, all design components are instantiated with their geometric representations. In other words, all macros, cells, gates, transistors, etc., with fixed shapes and sizes per fabrication layer, are assigned spatial locations (placement) and have appropriate routing connections (routing) completed in metal layers.
 <p align="center">
   <img src="https://user-images.githubusercontent.com/110080106/187413490-05ae8b94-ad97-4898-81a1-901231036450.png"width="1000"/><br>
   Fig 6. Layout
