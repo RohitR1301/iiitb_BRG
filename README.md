@@ -173,7 +173,9 @@ Now we go into the OpenLane folder and run the following command to automate the
 sudo make mount
 ./flow.tcl -design iiitb_brg
 ```
+
 To view the final layout we use magic and run the following command after opening terminal in openlane->design->iiitb_brg->runs->RUN_2022.08.30_09.58.31->results
+
 ```
 magic -T /home/rohitr/rohit/OpenLane/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../../tmp/merged.nom.lef def read iiitb_brg.def
 ```
@@ -184,6 +186,7 @@ We get the following layout as shown below
 </p>
 ### -Placing VSD inverter (sky130_vsdinv) in the layout
 First we need to invoke the vsd standard cell we do this by the following command
+
 ```
 git clone https://github.com/nickson-jose/vsdstdcelldesign
 ```
@@ -203,6 +206,7 @@ We select the port A, Y, VPWR and VGND one by one and then go to edit->text and 
   Fig 9. Setting port A
 </p>
 Now go to Tkcon.tcl window and type following command with A port selected.
+
 ```
 port class input
 port use signal
@@ -212,6 +216,7 @@ port use signal
   Fig 10. Setting Port Y
 </p>
 Now go to Tkcon.tcl window and type following command with Y port selected.
+
 ```
 port class output
 port use signal
@@ -220,6 +225,7 @@ port use signal
   <img src="https://user-images.githubusercontent.com/110080106/187509684-4c7c2d53-e791-42b0-a06f-25117bc3ec17.png"width="1000"/><br>
   Fig 11. Setting port VPWR
 </p>
+
 Now go to Tkcon.tcl window and type following command with VPWR port selected.
 ```
 port class inout
@@ -235,11 +241,13 @@ port class inout
 port use ground
 ```
 Now type the following command to generate the lef file
+
 ```
 lef write
 ```
 To place the inverter in the project. We use the generated lef file. We copy the sky130_vsdinv.lef file to the src of our project. 
 Now we need to edit the cofig.jason file as below
+
 ```
 {
     "DESIGN_NAME": "iiitb_brg",
@@ -266,9 +274,11 @@ Now we need to edit the cofig.jason file as below
         }
     }
 }
-
 ```
+
 Now we run the OpenLane flow command after invoking openlane. Go to OpenLane folder and run the following command
+
+
 ```
 sudo make mount
 package require openlane 0.9
@@ -279,17 +289,19 @@ run_synthesis
 run_floorplan
 run_placement
 ```
+
 In order to see the layout we now use magic by going into OpenLane->designs->iiitb_brg->runs->results->placements directory and then running the following command
-```
-magic -T /home/rohitr/rohit/OpenLane/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read iiitb_brg.def &
 
 ```
-We get the sky130_vsdinv included
-<p align="center">
-  <img src="screenshot1 vsdinv](https://user-images.githubusercontent.com/110080106/187512687-a2cdd6cc-49a9-4c00-b4de-7093b4be03dd.png"width="1000"/><br>
-  Fig 12. setting port VGND
-</p>
+magic -T /home/rohitr/rohit/OpenLane/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read iiitb_brg.def &
 ```
+
+We get the sky130_vsdinv included
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/110080106/187512687-a2cdd6cc-49a9-4c00-b4de-7093b4be03dd.png"width="1000"/><br>
+  Fig 13. Inverter in the project
+</p>
 
 
 ### Author
