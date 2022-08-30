@@ -184,6 +184,7 @@ We get the following layout as shown below
   <img src="https://user-images.githubusercontent.com/110080106/187413490-05ae8b94-ad97-4898-81a1-901231036450.png"width="1000"/><br>
   Fig 6. Layout
 </p>
+
 ### -Placing VSD inverter (sky130_vsdinv) in the layout
 First we need to invoke the vsd standard cell we do this by the following command
 
@@ -303,7 +304,11 @@ We get the sky130_vsdinv included
   Fig 13. Inverter in the project
 </p>
 
-
+### References
+- https://www.vsdiat.com/dashboard
+- https://github.com/The-OpenROAD-Project/OpenLane
+- https://github.com/RTimothyEdwards/magic
+- http://opencircuitdesign.com/magic/index.html
 ### Author
 - Rohit Raj
 ### Acknowledgement 
