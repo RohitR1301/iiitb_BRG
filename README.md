@@ -169,7 +169,17 @@ We make a file named as config.jason, which is used to configure OpenLane for ou
     } 
 }
 ```
-We make a folder inside openlane->design with the name iiitb_brg. Inside this folder we put the above config.jason file and also make one more folder names as SRC which contains the source file.
+We make a folder inside openlane->design with the name iiitb_brg. Inside this folder we put the above config.jason file and also make one more folder names as SRC which contains the source file. We paste the iiitb_brg.v file in the source file.
+Now we go into the OpenLane folder and run the following command to automate the whole ASIC flow.
+```
+sudo make mount
+./flow.tcl -design iiitb_brg
+```
+To view the final layout we use magic and run the following command after opening terminal in openlane->design->iiitb_brg->runs->RUN_2022.08.30_09.58.31->results
+```
+magic -T /home/rohitr/rohit/OpenLane/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../../tmp/merged.nom.lef def read iiitb_brg.def
+```
+We get the following layout as shown below
 <p align="center">
   <img src="https://user-images.githubusercontent.com/110080106/187413490-05ae8b94-ad97-4898-81a1-901231036450.png"width="1000"/><br>
   Fig 6. Layout
