@@ -146,27 +146,25 @@ We make a file named as config.jason, which is used to configure OpenLane for ou
 {
     "DESIGN_NAME": "iiitb_brg",
     "VERILOG_FILES": "dir::src/iiitb_brg.v",
-    "CLOCK_PORT": "clk",
-    "CLOCK_NET": "clk",
+    "CLOCK_PORT": "clkin",
+    "CLOCK_NET": "clkin",
     "GLB_RESIZER_TIMING_OPTIMIZATIONS": true,
     "CLOCK_PERIOD": 65,
-    "PL_RANDOM_GLB_PLACEMENT": 1,
-    "PL_TARGET_DENSITY": 0.5,
+    "PL_TARGET_DENSITY": 0.7,
     "FP_SIZING" : "relative",
-
-"LIB_SYNTH": "dir::src/sky130_fd_sc_hd__typical.lib",
-"LIB_FASTEST": "dir::src/sky130_fd_sc_hd__fast.lib",
-"LIB_SLOWEST": "dir::src/sky130_fd_sc_hd__slow.lib",
-"LIB_TYPICAL": "dir::src/sky130_fd_sc_hd__typical.lib",
-"TEST_EXTERNAL_GLOB": "dir::../iiitb_brg/src/*",
-"SYNTH_DRIVING_CELL":"sky130_vsdinv",
-
     "pdk::sky130*": {
         "FP_CORE_UTIL": 55,
         "scl::sky130_fd_sc_hd": {
             "FP_CORE_UTIL": 55
         }
-    } 
+    },
+    
+    "LIB_SYNTH": "dir::src/sky130_fd_sc_hd__typical.lib",
+    "LIB_FASTEST": "dir::src/sky130_fd_sc_hd__fast.lib",
+    "LIB_SLOWEST": "dir::src/sky130_fd_sc_hd__slow.lib",
+    "LIB_TYPICAL": "dir::src/sky130_fd_sc_hd__typical.lib",  
+    "TEST_EXTERNAL_GLOB": "dir::/src/*"
+
 }
 ```
 We make a folder inside openlane->design with the name iiitb_brg. Inside this folder we put the above config.jason file and also make one more folder names as SRC which contains the source file. We paste the iiitb_brg.v file in the source file.
@@ -204,20 +202,92 @@ We select the port A, Y, VPWR and VGND one by one and then go to edit->text and 
   <img src="https://user-images.githubusercontent.com/110080106/187509639-7c313821-9bad-42c6-b311-8a6cd8166b7f.png"width="1000"/><br>
   Fig 9. Setting port A
 </p>
+Now go to Tkcon.tcl window and type following command with A port selected.
+```
+port class input
+port use signal
+```
 <p align="center">
   <img src="https://user-images.githubusercontent.com/110080106/187509669-fd4413d6-c9c8-4ac6-82df-fec70045434a.png"width="1000"/><br>
   Fig 10. Setting Port Y
 </p>
+Now go to Tkcon.tcl window and type following command with Y port selected.
+```
+port class output
+port use signal
+```
 <p align="center">
   <img src="https://user-images.githubusercontent.com/110080106/187509684-4c7c2d53-e791-42b0-a06f-25117bc3ec17.png"width="1000"/><br>
   Fig 11. Setting port VPWR
 </p>
-
+Now go to Tkcon.tcl window and type following command with VPWR port selected.
+```
+port class inout
+port use power
+```
 <p align="center">
   <img src="https://user-images.githubusercontent.com/110080106/187509695-9c3f5bac-e0b5-4559-87ce-5b08156ef661.png"width="1000"/><br>
   Fig 12. setting port VGND
 </p>
+Now go to Tkcon.tcl window and type following command with VGND port selected.
+```
+port class inout
+port use ground
+```
+Now type the following command to generate the lef file
+```
+lef write
+```
+To place the inverter in the project. We use the generated lef file. We copy the sky130_vsdinv.lef file to the src of our project. 
+Now we need to edit the cofig.jason file as below
+```
+{
+    "DESIGN_NAME": "iiitb_brg",
+    "VERILOG_FILES": "dir::src/iiitb_brg.v",
+    "CLOCK_PORT": "clk",
+    "CLOCK_NET": "clk",
+    "GLB_RESIZER_TIMING_OPTIMIZATIONS": true,
+    "CLOCK_PERIOD": 65,
+    "PL_RANDOM_GLB_PLACEMENT": 1,
+    "PL_TARGET_DENSITY": 0.5,
+    "FP_SIZING" : "relative",
 
+"LIB_SYNTH": "dir::src/sky130_fd_sc_hd__typical.lib",
+"LIB_FASTEST": "dir::src/sky130_fd_sc_hd__fast.lib",
+"LIB_SLOWEST": "dir::src/sky130_fd_sc_hd__slow.lib",
+"LIB_TYPICAL": "dir::src/sky130_fd_sc_hd__typical.lib",
+"TEST_EXTERNAL_GLOB": "dir::../iiitb_brg/src/*",
+"SYNTH_DRIVING_CELL":"sky130_vsdinv",
+
+    "pdk::sky130*": {
+        "FP_CORE_UTIL": 55,
+        "scl::sky130_fd_sc_hd": {
+            "FP_CORE_UTIL": 55
+        }
+    }
+}
+```
+Now we run the OpenLane flow command after invoking openlane. Go to OpenLane folder and run the following command
+```
+sudo make mount
+package require openlane 0.9
+prep -design iiitb_brg
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+run_synthesis
+run_floorplan
+run_placement
+```
+In order to see the layout we now use magic by going into OpenLane->designs->iiitb_brg->runs->results->placements directory and then running the following command
+```
+magic -T /home/rohitr/rohit/OpenLane/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.nom.lef def read iiitb_brg.def &
+
+```
+We get the sky130_vsdinv included
+<p align="center">
+  <img src="screenshot1 vsdinv](https://user-images.githubusercontent.com/110080106/187512687-a2cdd6cc-49a9-4c00-b4de-7093b4be03dd.png"width="1000"/><br>
+  Fig 12. setting port VGND
+</p>
 
 
 ### Author
