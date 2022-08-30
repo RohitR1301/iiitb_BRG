@@ -184,10 +184,38 @@ We get the following layout as shown below
   <img src="https://user-images.githubusercontent.com/110080106/187413490-05ae8b94-ad97-4898-81a1-901231036450.png"width="1000"/><br>
   Fig 6. Layout
 </p>
+### -Placing VSD inverter (sky130_vsdinv) in the layout
+First we need to invoke the vsd standard cell we do this by the following command
+```
+git clone https://github.com/nickson-jose/vsdstdcelldesign
+```
+To invoke magic to view the sky130_inv.mag file, the sky130A.tech file must be included in the command along with its path. To ease up the complexity of this command, the tech file can be copied from the magic folder to the vsdstdcelldesign folder.
+```
+magic -T sky130A.tech sky130_inv.mag &
+```
+We can now see the standard cell inverter layout
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/110080106/187507051-8bb352ea-81e1-48bc-babc-316abfc42b29.png"width="1000"/><br>
+  Fig 8. Inverter layout
+</p>
+Now we need to define the ports in the inverter. 
+We select the port A, Y, VPWR and VGND one by one and then go to edit->text and then edit according to below
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/110080106/187509639-7c313821-9bad-42c6-b311-8a6cd8166b7f.png"width="1000"/><br>
+  Fig 9. Setting port A
+</p>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/110080106/187509669-fd4413d6-c9c8-4ac6-82df-fec70045434a.png"width="1000"/><br>
+  Fig 10. Setting Port Y
+</p>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/110080106/187509684-4c7c2d53-e791-42b0-a06f-25117bc3ec17.png"width="1000"/><br>
+  Fig 11. Setting port VPWR
+</p>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/110080106/187411328-1a056207-6ef7-4333-a7f1-2a6a5100c4f1.png"width="1000"/><br>
-  Fig 7. Inverter added to layout
+  <img src="https://user-images.githubusercontent.com/110080106/187509695-9c3f5bac-e0b5-4559-87ce-5b08156ef661.png"width="1000"/><br>
+  Fig 12. setting port VGND
 </p>
 
 
