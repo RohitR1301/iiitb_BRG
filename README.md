@@ -87,7 +87,30 @@ After running the above command we get the following output
   Fig 5. GLS Waveform
 </p>
 
-### 5) Layout
+### 5) Physical Design
+### About OpenLane
+OpenLane is an automated RTL to GDSII flow based on several components including OpenROAD, Yosys, Magic, Netgen, CVC, SPEF-Extractor, CU-GR, Klayout and a number of custom scripts for design exploration and optimization. The flow performs full ASIC implementation steps from RTL all the way down to GDSII.
+### Software setup
+## On Ubuntu
+`apt install -y build-essential python3 python3-venv python3-pip`
+# Setting Up OpenLane
+You can set up the Sky130 PDK and OpenLane by running:
+
+```
+    git clone https://github.com/The-OpenROAD-Project/OpenLane.git
+    cd OpenLane/
+    sudo make
+    sudo make test # This a ~5 minute test that verifies that the flow and the pdk were properly installed
+```
+# Running OpenLane
+You need to start the Docker container with proper paths mounted. There are two ways to do this.
+
+The easiest way to mount the proper directories into the docker container would be to rely on the Makefile:
+
+```
+    sudo make mount
+```
+
 <p align="center">
   <img src="https://user-images.githubusercontent.com/110080106/187413490-05ae8b94-ad97-4898-81a1-901231036450.png"width="1000"/><br>
   Fig 6. Layout
