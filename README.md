@@ -304,6 +304,42 @@ We get the sky130_vsdinv included
   Fig 13. Inverter in the project
 </p>
 
+# Results post-layout
+
+### 1. Post Layout synthesis gate count
+
+![image](https://user-images.githubusercontent.com/110080106/192516378-78c7afa5-146f-43ff-af67-b1311f693720.png) <br>
+
+<b><I> Gate Count = 89 </b></I> <br>
+
+### 2. Area (box command)
+
+![image](https://user-images.githubusercontent.com/110080106/192516675-96eddb3d-6496-4bcd-b320-ef579f72c529.png)<br>
+
+<b><I> Area = 7109.83 um2</b></I> <br>
+
+
+### 3. Performance
+![perf_2](https://user-images.githubusercontent.com/110080106/192516975-a26ded13-0117-4a90-bcac-476c546cc9c7.png)<br>
+
+<b><I> Performance = 1/(clock period - slack) = 1/(10 - 7.13)ps = 348.43Ghz </b></I><br>
+
+### 4. Flop/standard cell ratio
+
+![image](https://user-images.githubusercontent.com/62461290/192309751-ca917e21-6cdd-4791-912c-af3c8f2481d1.png) <br>
+
+
+<b><I>Flop Ratio = Ratio of total number of flip flops / Total number of cells present in the design = 8/71 = 0.1125 </b></I><br>
+
+### 5. Power (internal, switching, leakage and total)
+
+![image](https://user-images.githubusercontent.com/62461290/192310233-9804d9cf-25a7-40b5-a9d3-ef8bbd005532.png) <br>
+
+<b><I> Internal Power = 97.8 uW (74.4%) </b></I><br>
+<b><I> Switching Power = 33.6 uW (25.6%) </b></I><br>
+<b><I> Leakage Power = 0.485 nW (0.00%) </b></I><br>
+<b><I> Total Power = 131 uW (100%) </b></I><br>
+
 ### References
 - https://www.vsdiat.com/dashboard
 - https://github.com/The-OpenROAD-Project/OpenLane
