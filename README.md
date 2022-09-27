@@ -322,7 +322,7 @@ We get the sky130_vsdinv included
 ### 3. Performance
 ![perf_2](https://user-images.githubusercontent.com/110080106/192516975-a26ded13-0117-4a90-bcac-476c546cc9c7.png)<br>
 
-<b><I> Performance = 1/(clock period - slack) = 1/(10 - 7.13)ps = 348.43Ghz </b></I><br>
+<b><I> Performance = 1/(clock period - slack) = 1/(10.15 - 7.13)ns = 331.12 Mhz </b></I><br>
 
 ### 4. Flop/standard cell ratio
 
