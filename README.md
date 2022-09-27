@@ -326,19 +326,15 @@ We get the sky130_vsdinv included
 
 ### 4. Flop/standard cell ratio
 
-![image](https://user-images.githubusercontent.com/62461290/192309751-ca917e21-6cdd-4791-912c-af3c8f2481d1.png) <br>
+![image](https://user-images.githubusercontent.com/110080106/192536174-f72e844e-b15b-447e-92ee-db918b24c684.png)<br>
 
 
-<b><I>Flop Ratio = Ratio of total number of flip flops / Total number of cells present in the design = 8/71 = 0.1125 </b></I><br>
+<b><I>Flop Ratio = Ratio of total number of flip flops / Total number of cells present in the design = 16/89 = 0.1797 </b></I><br>
 
 ### 5. Power (internal, switching, leakage and total)
 
-![image](https://user-images.githubusercontent.com/62461290/192310233-9804d9cf-25a7-40b5-a9d3-ef8bbd005532.png) <br>
+![image](https://user-images.githubusercontent.com/110080106/192536696-10f90a22-a539-4cf2-bbd3-e1a838d0f22e.png) <br>
 
-<b><I> Internal Power = 97.8 uW (74.4%) </b></I><br>
-<b><I> Switching Power = 33.6 uW (25.6%) </b></I><br>
-<b><I> Leakage Power = 0.485 nW (0.00%) </b></I><br>
-<b><I> Total Power = 131 uW (100%) </b></I><br>
 
 ### References
 - https://www.vsdiat.com/dashboard
