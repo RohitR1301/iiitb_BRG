@@ -308,7 +308,7 @@ We get the sky130_vsdinv included
 
 ### 1. Post Layout synthesis gate count
 
-![image](https://user-images.githubusercontent.com/110080106/192516378-78c7afa5-146f-43ff-af67-b1311f693720.png) <br>
+![image](https://user-images.githubusercontent.com/110080106/192707381-74c54e4a-9505-4f5e-960c-56b455ed1194.png) <br>
 
 <b><I> Gate Count = 89 </b></I> <br>
 
@@ -320,9 +320,9 @@ We get the sky130_vsdinv included
 
 
 ### 3. Performance
-![perf_2](https://user-images.githubusercontent.com/110080106/192516975-a26ded13-0117-4a90-bcac-476c546cc9c7.png)<br>
+![perf_2](https://user-images.githubusercontent.com/110080106/192706222-d2b277a2-46c8-4922-a806-28bd65abe183.png)<br>
 
-<b><I> Performance = 1/(clock period - slack) = 1/(10.15 - 7.13)ns = 331.12 Mhz </b></I><br>
+<b><I> Performance = 1/(data arrival time+setup time) = 1/(2.29 + 0.27)ns = 390.625 Mhz </b></I><br>
 
 ### 4. Flop/standard cell ratio
 
