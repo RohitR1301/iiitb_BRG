@@ -314,7 +314,7 @@ We get the sky130_vsdinv included
 
 ### 2. Area (box command)
 
-![image](https://user-images.githubusercontent.com/110080106/192516675-96eddb3d-6496-4bcd-b320-ef579f72c529.png)<br>
+![image](https://user-images.githubusercontent.com/110080106/192707850-58fa11ce-1c9c-4f3e-89e2-683e37af435e.png)<br>
 
 <b><I> Area = 7109.83 um2</b></I> <br>
 
